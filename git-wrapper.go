@@ -44,3 +44,9 @@ func CurrentBranchName() (string, error) {
 	res, err := exec.Command(gitCmd, "symbolic-ref", "--short", "HEAD").Output()
 	return strings.Trim(string(res), "\n"), err
 }
+
+// GitTopDirPath returns git top dir path
+func GitTopDirPath() (string, error) {
+	res, err := exec.Command(gitCmd, "rev-parse", "--show-toplevel").Output()
+	return strings.Trim(string(res), "\n"), err
+}

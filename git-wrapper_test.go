@@ -24,15 +24,20 @@ func TestExec(t *testing.T) {
 func TestCurrentBranchName(t *testing.T) {
 	current, err := CurrentBranchName()
 	if err != nil {
-		t.Errorf("error: %v", err.Error())
+		t.Errorf("error: %v", err)
 	}
 	name := "master"
 	if err := Checkout(name); err != nil {
-		t.Errorf("error: %v", err.Error())
+		t.Errorf("error: %v", err)
 	}
 
 	if err := Checkout(current); err != nil {
-		t.Errorf("error: %v", err.Error())
+		t.Errorf("error: %v", err)
 	}
+}
 
+func TestGitTopDirPath(t *testing.T) {
+	if _, err := GitTopDirPath(); err != nil {
+		t.Errorf("error: %v", err)
+	}
 }
